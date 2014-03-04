@@ -1,0 +1,30 @@
+html {
+    background-color: hsl(99, 100%, 44%)
+}
+body {
+    max-width: 1200px;
+    background-color: #FFF;
+    font-family: sans-serif;
+}
+/* Reset */
+ol, ul, h1 {
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: hsl(99, 79%, 68%);
+}
+h1 {
+    text-align: center;
+}
+nav {
+    background-color: hsl(347, 87%, 70%);
+}
+main {
+}
+aside {
+    background-color: hsl(347, 90%, 60%);
+}
+footer {
+    background-color: hsl(99, 79%, 68%);
+}
