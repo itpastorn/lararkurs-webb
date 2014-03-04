@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Drag och släpp SVG-cirkel</title>
+  <style>
+    body {
+    	margin: 0;
+    }
+    h1, p {
+    	font-family: sans-serif;
+        margin-left: 100px;
+    }
+    svg {
+        /* Vi vill veta exakt var den är */
+        position: absolute;
+        top: 100px;
+        left: 100px;
+    }
+    circle {
+      	stroke: darkgreen;
+      	stroke-width: 5;
+        fill: rgba(0,150,0,0.5);
+        pointer-events: stroke;
+    }
+  </style>
+</head>
+<body>
+<h1>Drag och släpp SVG-cirkel</h1>
+<p>Klicka på kantlinjen och drag och släpp upp musknappen för att ändra cirkelns storlek.</p>
+<svg version="1.1"
+     baseProfile="full"
+     width="500"
+     height="500"
+     viewport="0 0 500 500">
+  <circle cx="250" cy="250" r="150" />
+</svg>
+<script>
+(function () {
+    var the_circle = document.getElementsByTagName("circle")[0];
+    // Stoppa inbyggd drag and drop
+    the_circle.ondragstart = function (e1) {
+        e1.preventDefault();
+    }
+    the_circle.onmousedown = function (e) {
+	    // Låt cirkeln följa muspekaren
+        // Vi använder SVG-elementet som måltaval för mousemove
+        this.parentNode.onmousemove = function(e2) {
+            // Cirkelns mitt är 350/350 i förhållande till sidan
+            var xsid = e2.clientX - 350;
+            var ysid = e2.clientY - 350;
+            /* Pythagoras */
+            var radie = Math.sqrt(xsid * xsid + ysid * ysid);
+            // Cirkeln
+            the_circle.setAttribute("r", radie);
+        }
+	    // När man klickar igen med muspekaren skall detta sluta
+        this.onmouseup = function() {
+        	this.parentNode.onmousemove = null;
+        }
+    }
+}());
+</script>
+</body>
+</html>
+
