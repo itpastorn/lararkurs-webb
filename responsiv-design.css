@@ -5,11 +5,13 @@ body {
     max-width: 1200px;
     background-color: #FFF;
     font-family: sans-serif;
+    margin: auto;
 }
 /* Reset */
-ol, ul, h1 {
+ol, ul, li, h1, h2 {
     margin: 0;
     padding: 0;
+    list-style-type: none;
 }
 header {
     background-color: hsl(99, 79%, 68%);
@@ -17,14 +19,71 @@ header {
 h1 {
     text-align: center;
 }
+main {
+    display: flex;
+    flex-direction: row; /* default row */
+    min-height: 300px;
+}
 nav {
     background-color: hsl(347, 87%, 70%);
+    flex: 1 1 120px;
 }
-main {
+article {
+    flex: 5 2 840px;
 }
 aside {
     background-color: hsl(347, 90%, 60%);
+    flex: 1 1 240px;
 }
 footer {
     background-color: hsl(99, 79%, 68%);
+    text-align: center;
 }
+@media all and (max-width: 800px) {
+    main {
+        flex-wrap: wrap;
+        min-height: 0;
+    }
+    nav {
+        flex: 0 0 100%;
+    }
+    nav ul {
+        text-align: center;
+    }
+    nav li {
+        display: inline-block;
+        padding: 0 1em;
+    }
+    article {
+        flex: 6 6 400px;
+    }
+    aside {
+        flex: 2 2 100px;
+    }
+    article > h2::after {
+        color: green;
+        content: "800px";
+        display: block;
+    }
+}
+@media all and (max-width: 500px) {
+    article {
+        flex: 0 0 100%;
+    }
+    aside {
+        flex: 0 0 100%;
+        min-height: 3em;
+    }
+    article > h2::after {
+        color: red;
+        content: "500px";
+        display: block;
+    }
+}
+@media all and (max-width: 450px) {
+    nav ul {
+        max-width: 60%;
+        margin: auto;
+    }
+}
+
