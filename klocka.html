@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <title>Klocka i JavaScript</title>
+  <meta name="description" content="Digitalur som visar timmar, minuter och sekunder i JavaScript" />
+  <style>
+    body {
+        margin: -250px 0 0 -400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 800px;
+        height: 400px;
+        font-family: sans-serif;
+        text-align: center;
+        border: 1px solid;
+    }
+    p {
+        font-size: 100px;
+        font-family: monospace;
+    }
+    span:first-child:after {
+        content: ":"
+    }
+    span:last-child:before {
+        content: ":"
+    }
+  </style>
+</head>
+<body>
+  <h1>Klocka i JavaScript</h1>
+  <p><span id="h">00</span><span id="m">00</span><span id="s">00</span></p>
+  <script>
+  function setClock() {
+      var time = new Date();
+      var hour = time.getHours();
+      var minu = time.getMinutes();
+      var secs = time.getSeconds();
+      hour = ( hour < 10 ) ? "0" + hour : hour;
+      minu = ( minu < 10 ) ? "0" + minu : minu;
+      secs = ( secs < 10 ) ? "0" + secs : secs;
+      document.getElementById("h").innerHTML = hour;
+      document.getElementById("m").innerHTML = minu;
+      document.getElementById("s").innerHTML = secs;
+      setTimeout(setClock, 1000);
+  }
+  setClock();
+  </script>
+</body>
+</html>
